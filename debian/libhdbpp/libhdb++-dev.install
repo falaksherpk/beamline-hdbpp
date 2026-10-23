@@ -1,0 +1,3 @@
+usr/include/hdb++
+usr/lib/*/libhdb++.so
+usr/lib/*/cmake/libhdbpp

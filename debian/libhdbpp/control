@@ -1,0 +1,36 @@
+Source: libhdbpp
+Section: libs
+Priority: optional
+Maintainer: Falak Sher <45312905+falaksherpk@users.noreply.github.com>
+Build-Depends:
+ debhelper-compat (= 13),
+ cmake,
+ pkgconf,
+ libtango-dev,
+Standards-Version: 4.6.2
+Rules-Requires-Root: no
+Homepage: https://gitlab.com/tango-controls/hdbpp/libhdbpp
+
+Package: libhdb++2
+Architecture: any
+Multi-Arch: same
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: HDB++ archiving library for Tango Controls
+ libhdb++ is the interface between the HDB++ EventSubscriber and an
+ archive database: it loads a database backend at run time (dlopen)
+ and passes archive events to it through the AbstractDB interface.
+ .
+ This package contains the shared library.
+
+Package: libhdb++-dev
+Section: libdevel
+Architecture: any
+Multi-Arch: same
+Depends: libhdb++2 (= ${binary:Version}), libtango-dev, ${misc:Depends}
+Description: HDB++ archiving library for Tango Controls (development files)
+ libhdb++ is the interface between the HDB++ EventSubscriber and an
+ archive database: it loads a database backend at run time (dlopen)
+ and passes archive events to it through the AbstractDB interface.
+ .
+ This package contains the headers and the CMake package configuration
+ needed to build HDB++ backends and servers.

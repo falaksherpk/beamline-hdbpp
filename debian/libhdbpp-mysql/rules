@@ -1,0 +1,14 @@
+#!/usr/bin/make -f
+# Upstream CMake build; nothing may be fetched from the network at configure time.
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+
+%:
+	dh $@
+
+override_dh_auto_configure:
+	dh_auto_configure -- -DFETCHCONTENT_FULLY_DISCONNECTED=ON
+
+# One binary package would make dh_auto_install install straight into it; stage in
+# debian/tmp instead, so the .install file selects and not-installed accounts for the rest.
+override_dh_auto_install:
+	dh_auto_install --destdir=debian/tmp

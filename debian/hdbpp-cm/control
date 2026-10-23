@@ -1,0 +1,20 @@
+Source: hdbpp-cm
+Section: misc
+Priority: optional
+Maintainer: Falak Sher <45312905+falaksherpk@users.noreply.github.com>
+Build-Depends:
+ debhelper-compat (= 13),
+ cmake,
+ pkgconf,
+ libtango-dev,
+ libhdb++-dev (>= 2.2.1),
+Standards-Version: 4.6.2
+Rules-Requires-Root: no
+Homepage: https://gitlab.com/tango-controls/hdbpp/hdbpp-cm
+
+Package: hdbpp-cm
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: HDB++ ConfigurationManager Tango device server
+ The HDB++ ConfigurationManager (hdb++cm-srv) adds, removes, starts and
+ stops archived attributes and assigns them to EventSubscriber devices.

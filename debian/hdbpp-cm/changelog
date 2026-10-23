@@ -1,0 +1,7 @@
+hdbpp-cm (2.2.2-1) noble; urgency=medium
+
+  * Built for the beamline lab (handbook Part 3, Ch30) from upstream tag
+    2.2.2, commit f8a4cccdc6f2. Packaging written for this lab; upstream's own
+    debian/ (1.0.x era, libhdb++6) is removed before the build.
+
+ -- Falak Sher <45312905+falaksherpk@users.noreply.github.com>  Fri, 23 Oct 2026 12:15:00 +0000

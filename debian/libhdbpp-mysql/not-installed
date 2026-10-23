@@ -1,0 +1,7 @@
+# Nothing builds against the backend: the EventSubscriber loads it by soname.
+usr/lib/*/libhdb++mysql.a
+usr/lib/*/libhdb++mysql.so
+usr/lib/*/cmake/libhdbpp-mysql/*
+# Upstream installs 3 of the 14 schema files here; all of etc/*.sql go to
+# usr/share/libhdb++mysql7/sql instead (libhdb++mysql7.install).
+usr/share/libhdb++mysql/*.sql

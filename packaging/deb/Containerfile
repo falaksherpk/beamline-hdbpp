@@ -1,0 +1,12 @@
+# Clean Ubuntu 24.04 environment for building the HDB++ .debs (handbook Part 3, Ch30).
+# Only generic tooling is baked in. Each package's Build-Depends come from its debian/control
+# and are installed in a fresh container for every build (apt-get build-dep), as in Ch15/Ch18.
+# Base pinned by manifest-list digest: the same ubuntu:24.04 as Ch15's and Ch18's builders.
+FROM docker.io/library/ubuntu:24.04@sha256:534baea6a22c03a63003dbc8dbe78fe34bc0d7e595d9a9dc9834884ff530eb55
+
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends build-essential dpkg-dev fakeroot lintian \
+ && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /build

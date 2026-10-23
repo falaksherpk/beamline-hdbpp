@@ -1,0 +1,27 @@
+Source: libhdbpp-mysql
+Section: libs
+Priority: optional
+Maintainer: Falak Sher <45312905+falaksherpk@users.noreply.github.com>
+Build-Depends:
+ debhelper-compat (= 13),
+ cmake,
+ pkgconf,
+ libtango-dev,
+ libhdb++-dev (>= 2.2.1),
+ libmariadb-dev,
+Build-Conflicts: libmysqlclient-dev
+Standards-Version: 4.6.2
+Rules-Requires-Root: no
+Homepage: https://gitlab.com/tango-controls/hdbpp/libhdbpp-mysql
+
+Package: libhdb++mysql7
+Architecture: any
+Multi-Arch: same
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: HDB++ archiving backend for MySQL and MariaDB
+ The backend the HDB++ EventSubscriber loads (LibConfiguration
+ libname=libhdb++mysql.so.7) to write archive events into a MySQL or
+ MariaDB database. Built against the MariaDB client library.
+ .
+ The schema files shipped upstream are installed in
+ /usr/share/libhdb++mysql7/sql.

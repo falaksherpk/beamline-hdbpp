@@ -1,0 +1,45 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: libhdbpp-mysql
+Source: https://gitlab.com/tango-controls/hdbpp/libhdbpp-mysql
+
+Files: *
+Copyright: 2014 Graziano Scalamera, Elettra - Sincrotrone Trieste S.C.p.A.,
+ and other HDB++ contributors
+License: LGPL-3+
+Comment: The source files carry no copyright or licence notice; the author
+ is named in the file headers. The upstream README says "released under the
+ LGPL3 license" and ships COPYING and COPYING.LESSER; the GitLab project
+ page lists GPL-3.0-or-later. LGPL-3+ is taken from the README.
+
+Files: debian/*
+Copyright: 2026 Falak Sher <45312905+falaksherpk@users.noreply.github.com>
+License: Expat
+Comment: The packaging, like the rest of beamline-hdbpp, is MIT (Expat).
+
+License: LGPL-3+
+ This package is free software; you can redistribute it and/or modify it
+ under the terms of the GNU Lesser General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or (at
+ your option) any later version.
+ .
+ On Debian systems, the complete text of the GNU Lesser General Public
+ License version 3 can be found in "/usr/share/common-licenses/LGPL-3".
+
+License: Expat
+ Permission is hereby granted, free of charge, to any person obtaining a
+ copy of this software and associated documentation files (the "Software"),
+ to deal in the Software without restriction, including without limitation
+ the rights to use, copy, modify, merge, publish, distribute, sublicense,
+ and/or sell copies of the Software, and to permit persons to whom the
+ Software is furnished to do so, subject to the following conditions:
+ .
+ The above copyright notice and this permission notice shall be included
+ in all copies or substantial portions of the Software.
+ .
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+ DEALINGS IN THE SOFTWARE.

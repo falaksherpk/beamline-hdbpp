@@ -1,0 +1,22 @@
+Source: hdbpp-es
+Section: misc
+Priority: optional
+Maintainer: Falak Sher <45312905+falaksherpk@users.noreply.github.com>
+Build-Depends:
+ debhelper-compat (= 13),
+ cmake,
+ pkgconf,
+ libtango-dev,
+ libhdb++-dev (>= 2.2.1),
+Standards-Version: 4.6.2
+Rules-Requires-Root: no
+Homepage: https://gitlab.com/tango-controls/hdbpp/hdbpp-es
+
+Package: hdbpp-es
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Recommends: libhdb++mysql7
+Description: HDB++ EventSubscriber Tango device server
+ The HDB++ EventSubscriber (hdb++es-srv) subscribes to the Tango archive
+ events of the attributes assigned to it and writes them through libhdb++
+ and a database backend into the archive.

@@ -1,0 +1,2 @@
+usr/lib/*/libhdb++mysql.so.*
+etc/*.sql usr/share/libhdb++mysql7/sql

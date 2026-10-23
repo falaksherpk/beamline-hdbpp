@@ -1,0 +1,3 @@
+# build outputs go to the OUTDIR given to build-deb.sh, outside the repository
+/out/
+*.part

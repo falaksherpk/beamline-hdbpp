@@ -1,0 +1,26 @@
+# Upstream sources for the HDB++ packages built here (handbook Part 3, Ch30).
+# The build script reads only SHA256SUMS (one line per tarball, in build order); this
+# file records where each tarball comes from and why its hash is trusted.
+#
+# Each tarball is GitLab's archive of a tag:
+#   https://gitlab.com/tango-controls/hdbpp/<name>/-/archive/<tag>/<name>-<tag>.tar.gz
+#
+# name            tag    commit                                    bytes  tag type
+# libhdbpp        2.2.1  08a2ac5a4a191572ff520eeea8eec6b7b80739f7  43694  lightweight
+# libhdbpp-mysql  1.3.0  f0a78829c3e76b06073655e547e7c73a16764c81  63416  annotated
+# hdbpp-es        2.3.8  cb79b7a10da38e39af62ebffc9767b48c1d49dbd  91742  lightweight
+# hdbpp-cm        2.2.2  f8a4cccdc6f202e7680b4234c6b0e27c4b60f25b  62764  lightweight
+#
+# libhdbpp-mysql's tag 1.3.0 builds version 7.2.0 (CMakeLists.txt, CHANGELOG.md,
+# soname libhdb++mysql.so.7); the package version follows the build, 7.2.0-1.
+#
+# checked: 2026-10-23 on admin.beamline. No tag carries a PGP signature, and upstream
+#   publishes no checksums. Each tarball was downloaded twice in a row (byte-identical),
+#   extracted, and compared with `diff -rq -x .git` against a depth-1 clone of its tag:
+#   exit 0 for all four, every file identical. Two channels (GitLab's archive endpoint,
+#   git) agree on every file's content; there is no cryptographic signature.
+# caveat: GitLab generates archives on request; their bytes are not guaranteed stable
+#   across GitLab upgrades. If a download stops matching SHA256SUMS, build-deb.sh
+#   refuses, and the tarball must be re-verified as above before SHA256SUMS changes.
+# packaging: our own debian/<name>/ (this repository). Upstream's debian/ (1.0.x era,
+#   libhdb++6) is removed before every build.
