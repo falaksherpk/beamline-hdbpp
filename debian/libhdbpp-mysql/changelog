@@ -1,3 +1,11 @@
+libhdbpp-mysql (7.2.0-2) noble; urgency=medium
+
+  * Bind value_w in store_scalar only for writable attributes (patch 0001):
+    every read-only scalar overflowed the MYSQL_BIND array, and the
+    EventSubscriber crashed on the first event of a read-only DevState.
+
+ -- Falak Sher <45312905+falaksherpk@users.noreply.github.com>  Sat, 24 Oct 2026 10:55:00 +0000
+
 libhdbpp-mysql (7.2.0-1) noble; urgency=medium
 
   * Built for the beamline lab (handbook Part 3, Ch30) from upstream tag

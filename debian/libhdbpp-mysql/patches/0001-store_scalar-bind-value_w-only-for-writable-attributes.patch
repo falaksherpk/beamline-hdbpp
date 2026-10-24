@@ -1,0 +1,31 @@
+Description: store_scalar: bind value_w only for writable attributes
+ HdbPPMySQL::store_scalar() puts the value_w column into the INSERT, and counts
+ a parameter for it, only when the attribute is writable (write_type !=
+ Tango::READ). The bind loop nevertheless bound value_w for every row, so for
+ a read-only scalar each row bound one MYSQL_BIND beyond its slot, and the
+ last row one beyond the end of the variable-length MYSQL_BIND array on the
+ stack. AddressSanitizer reports it as a dynamic-stack-buffer-overflow (WRITE
+ of size 8 in bind_value<Tango::DevState>, from store_scalar<Tango::DevState>);
+ without it the EventSubscriber dies with SIGSEGV on the first archive event of
+ a read-only DevState attribute. store_array() already guards the same bind
+ this way.
+Author: Falak Sher <45312905+falaksherpk@users.noreply.github.com>
+Forwarded: not-yet
+Last-Update: 2026-10-24
+---
+--- a/src/LibHdb++MySQL.cpp
++++ b/src/LibHdb++MySQL.cpp
+@@ -1895,8 +1895,11 @@
+ 				bind_value(plog_bind[plog_bind_ind],mysql_value_type,value_data[2*chunk_idx+0],value_data_len[2*chunk_idx+0],is_null[3*chunk_idx+0],is_unsigned);
+ 				plog_bind_ind++;
+ 
+-				bind_value(plog_bind[plog_bind_ind],mysql_value_type,value_data[2*chunk_idx+1],value_data_len[2*chunk_idx+1],is_null[3*chunk_idx+1],is_unsigned);
+-				plog_bind_ind++;
++				if(!(write_type == Tango::READ))	//RW: value_w is in the query only then
++				{
++					bind_value(plog_bind[plog_bind_ind],mysql_value_type,value_data[2*chunk_idx+1],value_data_len[2*chunk_idx+1],is_null[3*chunk_idx+1],is_unsigned);
++					plog_bind_ind++;
++				}
+ 			}
+ 
+ 			if (mysql_stmt_bind_param(pstmt, plog_bind))
