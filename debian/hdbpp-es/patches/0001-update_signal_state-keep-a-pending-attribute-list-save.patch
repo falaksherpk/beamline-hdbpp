@@ -1,0 +1,35 @@
+Description: update_signal_state: keep a pending attribute-list save
+ SharedData::add() and remove() ask the subscribe thread to save the attribute
+ list (Action::UPDATE_PROP); update_signal_state() then set Action::SUBSCRIBE
+ unconditionally. The action is one variable, so an AttributeStart right after
+ an AttributeAdd (what the ConfigurationManager's AttributeAdd does) usually
+ replaced the save before the thread saw it: the attribute was archived until
+ the next restart, then gone from AttributeList. A burst of three adds through
+ the ConfigurationManager saved none of them (0 of 3 after a restart); with this
+ patch all three are saved and loaded again. UPDATE_PROP's handler goes on to
+ SUBSCRIBE by itself, so leaving it in place loses nothing.
+Author: Falak Sher <45312905+falaksherpk@users.noreply.github.com>
+Forwarded: not-yet
+Last-Update: 2026-10-24
+---
+--- a/src/SubscribeThread.cpp
++++ b/src/SubscribeThread.cpp
+@@ -247,7 +247,17 @@
+         break;
+     }
+     }
+-    set_action(Action::SUBSCRIBE);
++    // A pending UPDATE_PROP (from add or remove) must not be overwritten: its handler
++    // saves the attribute list and then goes on to SUBSCRIBE anyway. Overwriting it lost
++    // the save of an attribute added and started in quick succession.
++    {
++        std::unique_lock<std::mutex> lk(action_mutex);
++        if(action != Action::UPDATE_PROP)
++        {
++            action = Action::SUBSCRIBE;
++        }
++    }
++    action_cv.notify_one();
+ }
+ 
+ //=============================================================================

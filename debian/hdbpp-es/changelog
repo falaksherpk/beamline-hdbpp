@@ -1,3 +1,11 @@
+hdbpp-es (2.3.8-2) noble; urgency=medium
+
+  * Keep a pending attribute-list save when an attribute is started (patch
+    0001): attributes added through the ConfigurationManager were often not
+    saved to AttributeList, and were gone after the next restart.
+
+ -- Falak Sher <45312905+falaksherpk@users.noreply.github.com>  Sat, 24 Oct 2026 11:30:00 +0000
+
 hdbpp-es (2.3.8-1) noble; urgency=medium
 
   * Built for the beamline lab (handbook Part 3, Ch30) from upstream tag
